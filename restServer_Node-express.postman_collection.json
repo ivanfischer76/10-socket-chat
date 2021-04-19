@@ -1,0 +1,655 @@
+{
+	"info": {
+		"_postman_id": "1ab07592-3eca-42b0-a6e5-0813515c04db",
+		"name": "restServer Node-express",
+		"description": "Estos son los endpoints básicos que hay definidos para un backend NodeJs con autenticación por token y registro con google signin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Usuarios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"test16\",\n    \"password\": \"1234567\",\n    \"correo\": \"test16@test.com\",\n    \"rol\": \"USER_ROLE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/usuarios",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"usuarios"
+					]
+				},
+				"description": "Crea usuarios en la base de datos:"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Usuarios",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"test2\",\n    \"password\": \"1234567\",\n    \"correo\": \"test2@test.com\",\n    \"rol\": \"USER_ROLE\",\n    \"google\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/usuarios/606747f0aa63db05b7e73362",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"usuarios",
+						"606747f0aa63db05b7e73362"
+					]
+				},
+				"description": "Actualiza usuarios en la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Usuarios - Paginado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/usuarios?desde=5&limite=3",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"usuarios"
+					],
+					"query": [
+						{
+							"key": "desde",
+							"value": "5"
+						},
+						{
+							"key": "limite",
+							"value": "3"
+						}
+					]
+				},
+				"description": "Obtiene una lista de los usuarios paginados de acuerdo al parámetro pasado como argumento en los headers"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY3NDRkZmY4ZmE2Zjc5MTBlYmE0MmYiLCJpYXQiOjE2MTc3MTMwNjAsImV4cCI6MTYxNzcyNzQ2MH0.-xBgM19d0BfNoTOeqw7_vkoWZIohz3_vzeC30bGxCeE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/usuarios/606747f0aa63db05b7e73362",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"usuarios",
+						"606747f0aa63db05b7e73362"
+					]
+				},
+				"description": "borra un usuario de la base de datos sin eliminarlo, sólo hace que no esté disponible bloqueándole el acceso."
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"correo\": \"test1@test.com\",\n    \"password\": \"1234567\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/auth/login",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "Inicia sesión obteniendo un token válido"
+			},
+			"response": []
+		},
+		{
+			"name": "Google SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id_token\": \"abc123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/auth/google",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"auth",
+						"google"
+					]
+				},
+				"description": "Se autentica con las credenciales de google creando un nuevo usuario en la base de datos con los datos proporcionados por google."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las categorías",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/categorias",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias"
+					]
+				},
+				"description": "Obtiene un listado de todas las catagorías"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una categorias por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/categorias/1",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias",
+						"1"
+					]
+				},
+				"description": "Obtiene una categoría con el id dado"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Categoría",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY3NDRkZmY4ZmE2Zjc5MTBlYmE0MmYiLCJpYXQiOjE2MTc5MTY1OTMsImV4cCI6MTYxNzkzMDk5M30.eWO-yLbcbKEHIyNNslUNGEUCrB1ITXLIgtM0rJTpxZ8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Bebidas frias\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/categorias",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias"
+					]
+				},
+				"description": "Crear una nueva categoría - privado - cualquiera con un token válido"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar categoría",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/categorias/1",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias",
+						"1"
+					]
+				},
+				"description": "Borrar una categoría - sólo Admin - softDelete"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar categoría",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/categorias/1",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias",
+						"1"
+					]
+				},
+				"description": "Actualizar una categoría - privado - cualquiera con un token válido."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Categorías-paginadas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/categorias?desde=0&limite=",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias"
+					],
+					"query": [
+						{
+							"key": "desde",
+							"value": "0"
+						},
+						{
+							"key": "limite",
+							"value": ""
+						}
+					]
+				},
+				"description": "Obtener las categorías paginadas.\n* desde: indica desde que índice comienza la lista, default 0.\n* limite: indica cuántas categorías, a partir del valor indicado en desde, traeŕa. Default 5."
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Categoría por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/categorias/606dc7e71864fe4cf2376196",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias",
+						"606dc7e71864fe4cf2376196"
+					]
+				},
+				"description": "Se obtiene una categoría que está representada por el id pasado como parámetro en la url"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Categoria por id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY3NDRkZmY4ZmE2Zjc5MTBlYmE0MmYiLCJpYXQiOjE2MTc4MjIzMTEsImV4cCI6MTYxNzgzNjcxMX0.wDf9bHhKD-0GFB23wTdMopT9owx9GYFP4NPaIx-vZd8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"galletas\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/categorias/606dc7e71864fe4cf2376196",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias",
+						"606dc7e71864fe4cf2376196"
+					]
+				},
+				"description": "Actualiza el nombre de una categoría y asigna el usuario que realizó la actualización como el usuario actual"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Categoría",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY3NDRkZmY4ZmE2Zjc5MTBlYmE0MmYiLCJpYXQiOjE2MTc4MjIzMTEsImV4cCI6MTYxNzgzNjcxMX0.wDf9bHhKD-0GFB23wTdMopT9owx9GYFP4NPaIx-vZd8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/categorias/606dc7e71864fe4cf2376196",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"categorias",
+						"606dc7e71864fe4cf2376196"
+					]
+				},
+				"description": "Borra una categoría poniendo su bandera estado en false"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Productos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY3NDRkZmY4ZmE2Zjc5MTBlYmE0MmYiLCJpYXQiOjE2MTc4MzQwMDMsImV4cCI6MTYxNzg0ODQwM30.VOW7CzRGPwJrzq6vWEpuzvJlDKs5LfmD0jdulcA3SeU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"galletitas de vainilla\",\n    \"categoria\": \"606dc7e71864fe4cf237619\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/productos",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"productos"
+					]
+				},
+				"description": "Crea un nuevo producto asignándole la categoría pasada en el body"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Productos paginados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/productos?desde=0&limite=10",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"productos"
+					],
+					"query": [
+						{
+							"key": "desde",
+							"value": "0"
+						},
+						{
+							"key": "limite",
+							"value": "10"
+						}
+					]
+				},
+				"description": "Obtiene una lista de productos paginados.\n* desde: indica desde que número de item se desea obtener la lista.\n* limite: indica la cantidad de items de la lista"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un producto por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/productos/606e324cfdd6f3191dbb6583",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"productos",
+						"606e324cfdd6f3191dbb6583"
+					]
+				},
+				"description": "Obtiene el producto que coincide con el id pasado por parámetro"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Productos por Id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY3NDRkZmY4ZmE2Zjc5MTBlYmE0MmYiLCJpYXQiOjE2MTc4MzQwMDMsImV4cCI6MTYxNzg0ODQwM30.VOW7CzRGPwJrzq6vWEpuzvJlDKs5LfmD0jdulcA3SeU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"galletitas saladas\",\n    \"categoria\": \"606dc7e71864fe4cf2376196\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}api/productos/606e32dafdd6f3191dbb6584",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"productos",
+						"606e32dafdd6f3191dbb6584"
+					]
+				},
+				"description": "Actualiza el producto pasado por parámetro.\n* nombre: obligatorio.\n* categoría: obligatorio"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Producto por id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDY3NDRkZmY4ZmE2Zjc5MTBlYmE0MmYiLCJpYXQiOjE2MTc4MzQwMDMsImV4cCI6MTYxNzg0ODQwM30.VOW7CzRGPwJrzq6vWEpuzvJlDKs5LfmD0jdulcA3SeU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}api/productos/606e324cfdd6f3191dbb6583",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"productos",
+						"606e324cfdd6f3191dbb6583"
+					]
+				},
+				"description": "Borra el producto que coincide con el id pasado por parámetro poniendo su bandera estado en false"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/buscar/productos/gallet",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"buscar",
+						"productos",
+						"gallet"
+					]
+				},
+				"description": "Busca un item en una colección\n* Petición GET a la api {{url}}api/buscar/[coleccion]/[termino], donde:\n* coleccion debe ser:\n * usuarios\n * categorias\n * productos\n* Puede buscar tanto por id como por otro campo, como por ejemplo nombre, correo, etc, cualquier cosa se puede poner como temino."
+			},
+			"response": []
+		},
+		{
+			"name": "Subir archivo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/media/ivan/datos/Imagenes/media luna-001.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}api/uploads",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"uploads"
+					]
+				},
+				"description": "Endpoint para la subida de archivos.\n* En el body debe ir:\n * archivo: nombre del archivo son su extensión"
+			},
+			"response": []
+		},
+		{
+			"name": "Cargar imagen de usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/media/ivan/datos/Imagenes/eclipse-720x1280-01.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}api/uploads/usuarios/6067683c81e3c76062ecdadb",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"uploads",
+						"usuarios",
+						"6067683c81e3c76062ecdadb"
+					]
+				},
+				"description": "Sube una imagen asociada al usuario con el id pasado por parámetro. En el body debe ir:\n * archivo: imagen"
+			},
+			"response": []
+		},
+		{
+			"name": "Cargar imagen de producto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": "/media/ivan/datos/Imagenes/media luna-001.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}api/uploads/productos/606e324cfdd6f3191dbb6583",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"uploads",
+						"productos",
+						"606e324cfdd6f3191dbb6583"
+					]
+				},
+				"description": "Sube una imaégen asociada al id pasado por parámetro. En el body debe ir: \n * archivo: imagen"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener imagen de producto o usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}api/uploads/productos/606e32dafdd6f3191dbb6584",
+					"host": [
+						"{{url}}api"
+					],
+					"path": [
+						"uploads",
+						"productos",
+						"606e32dafdd6f3191dbb6584"
+					]
+				},
+				"description": "Petición GET al api /uploads/categoria/id donde: \n* categoria debe ser una catagoria válida: usuarios o productos.\n* id debe ser un id de mongo válido.\nSi el id no tiene ninguna imágen asociada se devuelve una imagen general indicando que no hay imagen para el producto o usuario."
+			},
+			"response": []
+		}
+	]
+}
